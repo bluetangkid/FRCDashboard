@@ -7,7 +7,7 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<img>
     <div id="timer">2:15</div>
     <header>
         <!-- Tells whether robot is connected to dashboard. -->
@@ -17,27 +17,49 @@
     <!-- You'll need to mess around with the CSS of #camera (found in css/style.css) to get it to work.
         More explanation in that CSS rule. -->
     <div id="camera"></div>
+
+    <text id="battv">Batt(V)</text>
+    <canvas id="voltage"></canvas>
+    <text id="rcpu">Rio CPU</text>
+    <canvas id="rioCpu"></canvas>
+    <text id="rram">Rio RAM</text>
+    <canvas id="rioRam"></canvas>
+    <text id="pdraw">Power(A)</text>
+    <canvas id="powerDraw"></canvas>
+
+    <text id="amps">0</text>
+    <text id="cpu">0</text>
+    <text id="ram">0</text>
+    <text id="volts">0</text>
     <!-- The main body of the dashboard, by default contains the gyro monitor and the robot diagram -->
     <article>
         <!-- Gyroscope -->
         <svg id="gyro">
-            <circle cx="85" cy="85" r="83"></circle>
-            <circle cx="85" cy="85" r="50"></circle>
-            <rect id="gyro-arm" x="80" y="5" width="10" height="80"></rect>
-            <text id="gyro-number" x="90" y="115">0º</text>
+            <text x="37" y="15">Gyro</text>
+            <rect id="gyro-arm" x="56" y="25" width="4" height="60"></rect>
+            <text id="gyro-number" x="56" y="115">0º</text>
+        </svg>
+        <svg id="gyro-pose">
+            <text x="18" y="15" style="text-align:center">Estimate</text>
+            <rect id="gyro-arm-pose" x="56" y="25" width="4" height="60"></rect>
+            <text id="gyro-number-pose" x="56" y="115">0º</text>
         </svg>
         <!-- Example robot diagram, arm moves when encoder value changes -->
-        <svg id="robot-diagram" width="332" height="450">
-            <text x="40" y="340">Example SVG Robot Diagram</text>
-            <rect x="75" y="360" width="230" height="40"></rect>
-            <rect x="85" y="370" width="210" height="40"></rect>
-            <rect id="robot-arm" x="5" y="375" width="80" height="10"></rect>
-            <circle cx="100" cy="410" r="25"></circle>
-            <circle cx="260" cy="410" r="25"></circle>
-            <rect x="60" y="380" width="250" height="30"></rect>
-            <text id="team" x="185" y="405" text-anchor="middle">####</text>
+        <svg id="robot-diagram" width="230" height="270">
+            <text x="40" y="0">Motors</text>
+            <rect x="0" y="0" width="230" height="270" style="fill:#bbc1c3"></rect>
+            <rect x="20" y="20" width="190" height="230" style="fill:#2b5235"></rect>
+            <rect x="21" y="127" width="30" height="14" style="fill:#000;stroke-width:0"></rect>
+            <rect x="21" y="142" width="30" height="14" style="fill:#000;stroke-width:0"></rect>
+            <rect x="179" y="127" width="30" height="14" style="fill:#000;stroke-width:0"></rect>
+            <rect x="179" y="142" width="30" height="14" style="fill:#000;stroke-width:0"></rect>
         </svg>
     </article>
+
+    <img src="./images/2019-field.jpg" id="field">
+    <svg id="robot">
+        <rect id="roborect"></rect>
+    </svg>
     <!-- The sidebar of the dashboard. Designed for smaller control elements like selection boxes and small buttons. -->
     <aside>
         <!-- Example button which toggles /SmartDashboard/exampleValue NetworkTables value.
@@ -65,6 +87,53 @@
     <script src="networktables/networktables.js"></script>
     <script src="ui.js"></script>
     <script src="connection.js"></script>
+    <script src="gauge/gauge.min.js"></script>
+    <script type="text/javascript">
+        var opts = {
+            angle: -0.29, // The span of the gauge arc
+            lineWidth: 0.1, // The line thickness
+            radiusScale: 1, // Relative radius
+            pointer: {
+                length: 0.0, // // Relative to gauge radius
+                strokeWidth: 0.0, // The thickness
+                color: '#000000' // Fill color
+            },
+            limitMax: false,     // If false, max value increases automatically if value > maxValue
+            limitMin: false,     // If true, the min value of the gauge will be fixed
+            colorStart: '#2b5235',   // Colors
+            colorStop: '#00DA24',    // just experiment with them
+            strokeColor: '#bbc1c3',  // to see which ones work best for you
+            generateGradient: true,
+            highDpiSupport: true,     // High resolution support
+        };
+        var target = document.getElementById('voltage'); // your canvas element
+        var voltage = new Gauge(target).setOptions(opts); // create sexy gauge!
+        voltage.maxValue = 17; // set max gauge value
+        voltage.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+        voltage.animationSpeed = 13; // set animation speed (32 is default value)
+        voltage.set(0); // set actual value
+
+        target = document.getElementById('rioCpu');
+        var rioCpu = new Gauge(target).setOptions(opts); // create sexy gauge!
+        rioCpu.maxValue = 100; // set max gauge value
+        rioCpu.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+        rioCpu.animationSpeed = 13; // set animation speed (32 is default value)
+        rioCpu.set(0); // set actual value
+
+        target = document.getElementById('rioRam');
+        var rioRam = new Gauge(target).setOptions(opts); // create sexy gauge!
+        rioRam.maxValue = 100; // set max gauge value
+        rioRam.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+        rioRam.animationSpeed = 13; // set animation speed (32 is default value)
+        rioRam.set(0); // set actual value
+
+        target = document.getElementById('powerDraw');
+        var powerDraw = new Gauge(target).setOptions(opts); // create sexy gauge!
+        powerDraw.maxValue = 175; // set max gauge value
+        powerDraw.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+        powerDraw.animationSpeed = 13; // set animation speed (32 is default value)
+        powerDraw.set(0); // set actual value
+    </script>
 </body>
 
 </html>

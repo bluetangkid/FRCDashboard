@@ -14,13 +14,13 @@ body {
     user-select: none;
     color: white;
     overflow: hidden;
-    background: #222;
+    background: #a2aaad;
 }
 button, input[type="text"], input[type="number"], .select-container, select {
     color: white;
     background: #444;
     border: none;
-    font-size: 14px;
+    font-size: 14px sans-serif;
     padding: 6px 8px;
     cursor: pointer;
     outline: 0;
@@ -44,49 +44,129 @@ input[type="checkbox"] {
 }
 /* Major interface panes, aside, article, header, etc. */
 body > * {
-    padding: 10px;
+    padding: 0px;
     position: fixed;
     overflow: scroll;
-    background: #222;
+    background: #a2aaad;
 }
 #timer {
-    font-family: monospace;
+    font-family: sans-serif;
     display: block;
     height: 20vh;
     width: 30vw;
-    top: 0;
-    left: 0;
-    font-size: 20vh;
+    top: 7px;
+    left: 7px;
+    font-size: 8vh;
     line-height: .8;
 }
 header {
     width: 20vw;
     height: 20vh;
     top: 0;
-    left: 30vw;
+    left: 10vw;
     color: white;
 }
 #camera {
     padding: 0;
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 50vw;
-    height: 80vh;
+    top: 9vh;
+    left: .6vh;
+    width: 76vh;
+    height: 70vh;
     overflow: hidden;
-    background-color: #333;
+    background-color: #bbc1c3;
     /* You'll need to mess with this a bit to get your camera to work. Replace the url with a live-updating image feed from your camera. Using other camera streaming systems will require some tweaking. */
     /*background-image: url('LINK TO CAMERA SOURCE HERE');*/
 }
+#voltage {
+    position:absolute;
+    bottom: .7vh;
+    left: .7vh;
+    width: 16.5vh;
+    height: 16.5vh;
+}
+#powerDraw {
+    position:absolute;
+    bottom: .7vh;
+    left: 17.9vh;
+    width: 16.5vh;
+    height: 16.5vh;
+}
+#rioCpu {
+    position:absolute;
+    bottom: .7vh;
+    left: 34.1vh;
+    width: 16.5vh;
+    height: 16.5vh;
+}
+#rioRam {
+    position:absolute;
+    bottom: .7vh;
+    left: 51.3vh;
+    width: 16.5vh;
+    height: 16.5vh;
+}
+#battv {
+    position:absolute;
+    font-size: 12px;
+    bottom: 18vh;
+    left: 4.5vh;
+}
+#pdraw {
+    position:absolute;
+    font-size: 12px;
+    left: 20vh;
+    bottom: 18vh;
+}
+#rcpu {
+    position:absolute;
+    font-size: 12px;
+    left: 36vh;
+    bottom: 18vh;
+}
+#rram {
+    position:absolute;
+    font-size: 12px;
+    left: 53.5vh;
+    bottom: 18vh;
+}
+#amps {
+    position:absolute;
+    font-size: 12px;
+    left: 25.9vh;
+    bottom: 5vh;
+    text-align: center;
+}
+#volts {
+    position:absolute;
+    font-size: 12px;
+    left: 8.5vh;
+    bottom: 5vh;
+    text-align: center;
+}
+#cpu{
+    position:absolute;
+    font-size: 12px;
+    left: 41.5vh;
+    bottom: 5vh;
+    text-align: center;
+}
+#ram{
+    position:absolute;
+    font-size: 12px;
+    left: 59.25vh;
+    bottom: 5vh;
+    text-align: center;
+}
 article {
     top: 0;
-    left: 50vw;
+    left: 76.8vh;
     height: 100vh;
-    width: 35vw;
+    width: 50vh;
 }
 svg * {
     stroke: white;
-    fill: #222;
+    fill: #a2aaad;
     stroke-width: 2;
     -webkit-transform-origin: center;
     -ms-transform-origin: center;
@@ -99,10 +179,12 @@ text {
     fill: white;
 }
 #gyro {
-    width: 175px;
-    height: 175px;
-    margin-left: 30px;
-    margin-top: 15px;
+    position:absolute;
+    top: .7vh;
+    left: .7vh;
+    width: 112px;
+    height: 120px;
+    background: #bbc1c3;
 }
 #gyro-arm {
     -webkit-transform-origin: bottom;
@@ -113,10 +195,27 @@ text {
     font-size: 25px;
     text-anchor: middle;
 }
+#gyro-pose {
+    position:absolute;
+    width: 113px;
+    height: 120px;
+    top: .7vh;
+    left: 125px;
+    background: #bbc1c3;
+}
+#gyro-arm-pose {
+    -webkit-transform-origin: bottom;
+    -ms-transform-origin: bottom;
+    transform-origin: bottom;
+}
+#gyro-number-pose {
+    font-size: 25px;
+    text-anchor: middle;
+}
 #robot-diagram {
     position: absolute;
-    bottom: 1px;
-    right: 1vw;
+    top: 134px;
+    left: .7vh;
 }
 #robot-arm {
     -webkit-transform-origin: right;
@@ -130,7 +229,7 @@ text {
 aside {
     right: 0;
     top: 0;
-    width: 15vw;
+    width: 15vh;
     height: 100vh;
 }
 aside > * {
@@ -159,4 +258,19 @@ body.login #login {
 }
 #login > button {
     margin-left: 5px;
+}
+#field{
+    width:50vw;
+    right:6vw;
+}
+#robot{
+    right:6vw;
+    width:2.5vw;
+    height:2vw;
+}
+#robot-rect{
+    fill:#2b5235;
+    width:2.5vw;
+    height:2vw;
+    stroke-width:1px;
 }
